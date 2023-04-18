@@ -18,14 +18,35 @@
             z-index: 999;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="imgCont">
-        <img src="./img/a.png">
-        <img src="./img/a2.png">
-        <img src="./img/back.png">
-        <img src="./img/nanami.png">
-        <img src="./img/c.png">
+        <img src="./img/a.png" onclick= "imgContCopy(this)"/>
+        <img src="./img/a2.png" onclick= "imgContCopy(this)"/>
+        <img src="./img/back.png" onclick= "imgContCopy(this)"/>
+        <img src="./img/nanami.png" onclick= "imgContCopy(this)"/>
+        <img src="./img/c.png" onclick= "imgContCopy(this)"/>
     </div>
+    <script>
+        function imgContCopy(imgCont_o) {
+            let pos = $(imgCont_o).offset(); //이미지 위치 알아내기
+            let rnd1 = Math.round(Math.random() * 900 - 850);
+            let rnd2 = Math.round(Math.random() * 900 - 450);
+            let move_top = pos.top - rnd1;
+            let move_left = pos.left - rnd2;
+
+            $(imgCont_o)
+            .clone() //복제
+            .appendTo(".imgCont")
+            .css({top:pos.top, left:pos.left, position:"absolute"})
+            .animate({top:move_top, left:move_left}, 1000, function() {
+                let img = this;
+                setTimeout(function() {
+                    $(img).remove();
+                }, 3000); //3초 뒤에 제거
+            });
+        }
+    </script>
 </body>
 </html>
