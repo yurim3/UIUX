@@ -7,7 +7,12 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-     
+        $(function() {
+            $(".displaySlide div").slideUp();
+            $(".displaySlide p").on('click', function(e) {
+                $(this).next().slideToggle();
+            });
+        });
     </script>
 </head>
 <body>
